@@ -87,7 +87,8 @@ router.post('/datos', (req, res) => {
         multiseleccion, 
         ubicacion, 
         numero, 
-        precio 
+        precio,
+        cantidad
     } = req.body;
   
     // Insertar la nueva fila en la tabla datos
@@ -100,7 +101,8 @@ router.post('/datos', (req, res) => {
     multiseleccion = '${multiseleccion}', 
     ubicacion = '${ubicacion}', 
     numero = '${numero}', 
-    precio = '${precio}'`;
+    precio = '${precio}',
+    cantidad = '${cantidad}'`;
     db.query(query, (error, results, fields) => {
       if (error) {
         res.status(500).send({ message: error });
@@ -123,7 +125,8 @@ router.put('/datos', (req, res) => {
       multiseleccion, 
       ubicacion, 
       numero, 
-      precio 
+      precio,
+      cantidad,
   } = req.body;
 
   // Insertar la nueva fila en la tabla datos
@@ -137,8 +140,11 @@ router.put('/datos', (req, res) => {
   multiseleccion = '${multiseleccion}', 
   ubicacion = '${ubicacion}', 
   numero = '${numero}', 
-  precio = '${precio}' 
+  precio = '${precio}',
+  cantidad = '${cantidad}' 
   WHERE id = '${id}'`;
+
+  console.log(query)
   db.query(query, (error, results, fields) => {
     if (error) {
       res.status(500).send({ message: error });
